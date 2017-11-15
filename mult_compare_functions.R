@@ -12,14 +12,26 @@ DataCleaner <- function(x, fact, respo, warn=TRUE){
       if(is.factor(x[,factor_col])==FALSE) stop("Fact column does not have factors")
       if(is.numeric(x[,respo_col])==FALSE || is.integer(x[,respo_col])==FALSE) stop("Respo column is not numeric or an integer")
     }
-      #which(colname(x)==fact)
-      #x$fact <- as.factor(x$fact)
-      #x$respo <- as.numeric(x$respo)
-      #numfactors <- length(levels(x$fact))
+    x$fact <- as.factor(x[,factor_col])
+    x$respo <- as.numeric(x[,respo_col])
+    factor_names <- unique(levels(x$fact))
+    numfactors <- factor_names
     
-      print(head(x[,c(factor_col,respo_col)])) ## will get rid of this everntually but need it for now
-   
-       if(warn!=TRUE && warn!=FALSE) stop("Warn must be set to TRUE or FALSE")
+    output1 <- list() # setting up a list so that can output a list of the
+    #different numeric variables by factor for easier use in making multiple t-test
+    #comparisons
+    
+    for(i in 1:length(factor_names)){
+      temp <- subset(x, fact==factor_names[i])
+      temp_name <- factor_names[i]
+      output1[[i]] <- as.numeric(temp[,respo_col])
+    }
+    
+    
+    names(output1) <- factor_names
+    return(output1)
+    
+    if(warn!=TRUE && warn!=FALSE) stop("Warn must be set to TRUE or FALSE")
       
     
     
@@ -37,3 +49,5 @@ DataCleaner(x=raw_data, fact="y",respo="Total.Seeds.Removed")
 DataCleaner(x=raw_data, fact="Plot",respo="y") 
 class(raw_data$Total.Seeds.Removed)
     
+trial <- unique(levels(raw_data$Plot))
+trial[1]
