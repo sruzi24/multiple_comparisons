@@ -28,21 +28,14 @@ DataCleaner <- function(x, fact, respo, warn=TRUE){
     }
     
     names(output1) <- factor_names
-    #output2 <- as.data.frame(cbind(x$fact,x$respo))
-    #print(output2)
-    #products <- as.list(output1,output2)
+   
+    output2 <- as.data.frame(cbind(variable=x$fact,response=x$respo))
+    output2$variable <- as.factor(x$fact)
     
-    ## getting this to output a data frame of the factors and the numeri values
-    #currently isn't working 
-    print(head(x$fact))
+    products <- append(list(compare_list=output1),list(data_frame=output2))
     
-    output2 <- as.data.frame(c(as.factor(x[,factor_col]),x[,respo_col]))
-    
-    print(head(output2))
-    
-    
-    #return(products)
-    return(output1)
+    return(products)
+    #return(output1)
     
     if(warn!=TRUE && warn!=FALSE) stop("Warn must be set to TRUE or FALSE")
       
@@ -55,8 +48,7 @@ DataCleaner <- function(x, fact, respo, warn=TRUE){
 setwd("/Users/Selina/Dropbox/Seed_Removal_BCI/Data/Data May 2015")
 raw_data<-read.csv("2013_aboveground_totals_may2015.csv")
 names(raw_data)
-DataCleaner(x=raw_data, fact="Plot",respo="Total.Seeds.Removed", warn=TRUE)
+testing<-DataCleaner(x=raw_data, fact="Plot",respo="Total.Seeds.Removed", warn=TRUE)
 DataCleaner(x=raw_data, fact="y",respo="Total.Seeds.Removed") 
 DataCleaner(x=raw_data, fact="Plot",respo="y") 
-
-    
+testing
