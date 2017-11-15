@@ -27,14 +27,25 @@ DataCleaner <- function(x, fact, respo, warn=TRUE){
       output1[[i]] <- as.numeric(temp[,respo_col])
     }
     
-    
     names(output1) <- factor_names
+    #output2 <- as.data.frame(cbind(x$fact,x$respo))
+    #print(output2)
+    #products <- as.list(output1,output2)
+    
+    ## getting this to output a data frame of the factors and the numeri values
+    #currently isn't working 
+    print(head(x$fact))
+    
+    output2 <- as.data.frame(c(as.factor(x[,factor_col]),x[,respo_col]))
+    
+    print(head(output2))
+    
+    
+    #return(products)
     return(output1)
     
     if(warn!=TRUE && warn!=FALSE) stop("Warn must be set to TRUE or FALSE")
       
-    
-    
     
   }else {
     stop("Fact and/or respo column name(s) not found")} 
@@ -47,7 +58,5 @@ names(raw_data)
 DataCleaner(x=raw_data, fact="Plot",respo="Total.Seeds.Removed", warn=TRUE)
 DataCleaner(x=raw_data, fact="y",respo="Total.Seeds.Removed") 
 DataCleaner(x=raw_data, fact="Plot",respo="y") 
-class(raw_data$Total.Seeds.Removed)
+
     
-trial <- unique(levels(raw_data$Plot))
-trial[1]
