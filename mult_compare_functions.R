@@ -52,3 +52,10 @@ testing<-DataCleaner(x=raw_data, fact="Plot",respo="Total.Seeds.Removed", warn=T
 DataCleaner(x=raw_data, fact="y",respo="Total.Seeds.Removed") 
 DataCleaner(x=raw_data, fact="Plot",respo="y") 
 testing
+names(testing)
+testing$compare_list
+names(testing$compare_list)
+testing$data_frame
+testing2 <- as.data.frame(testing$data_frame)
+testing2
+class(testing2)
