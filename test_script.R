@@ -5,6 +5,7 @@ setwd("/Users/Selina/Documents/GitHub/multiple_comparisons")
 setwd("/Users/Selina/Documents/GitHub/multiple_comparisons/R")
 source("mult_compare_functions.R")
 source("subset_cleaner_function.R")
+source("mult_t_tests_function.R")
 
 ### test data
 setwd("/Users/Selina/Dropbox/Seed_Removal_BCI/Data/Data May 2015")
@@ -32,3 +33,12 @@ testing4$sub_compare_list
 length(testing4$sub_compare_list)
 testing4$sub_data_frame
 length(testing4$sub_data_frame)
+
+trial <- testing[[1]]
+trial2 <- names(trial)
+trial3 <- combn(trial2, 2)
+trial3[,1]
+#so each column has a different pairing, use it to index? 
+
+library(data.table)
+Mult_T_Tests(testing, groups=FALSE, paired=FALSE)
