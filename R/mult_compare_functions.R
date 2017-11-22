@@ -17,7 +17,7 @@ DataCleaner <- function(x, fact, respo, warn=TRUE){
     factor_names <- unique(levels(x$fact))
     numfactors <- factor_names
     
-    output1 <- list() # setting up a list so that can output a list of the
+    output1 <- list(numfactors) # setting up a list so that can output a list of the
     #different numeric variables by factor for easier use in making multiple t-test
     #comparisons
     
