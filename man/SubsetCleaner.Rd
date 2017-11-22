@@ -1,20 +1,22 @@
-\name{DataCleaner}
-\alias{DataCleaner}
+\name{SubsetCleaner}
 \alias{SubsetCleaner}
-%- Also NEED an '\alias' for EACH other topic documented here.
+\alias{DataCleaner}
 \title{
-Function for Cleaning Data for Multiple Comparisons
+Function for Subsetting and Cleaning Data for Multiple Comparisons
 }
 \description{
-This function takes a data file, the user's choice of column to do the comparisons by, the user's choice of column for the numeric values, checkes that these columnds are in the correct class and then will output a list that has the numeric values  separated by each level of the variable the user wants to compare and a dataframe of the values for easy graphing in another function. There must be column names for this function to work.
+This function takes a data file, the user's choice of column to subset the data by, the user's choice of column to do the comparisons by, the user's choice of column for the numeric values, checkes that these columnds are in the correct class and then will output a list separated by subset that has the numeric values separated by each level of the variable the user wants to compare and dataframes based on the number of subset levels of the values for easy graphing in another function. There must be column names for this function to work.
 }
 \usage{
-DataCleaner(x, fact, respo, warn = TRUE)
+SubsetCleaner(x, sub, fact, respo, warn = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-  Is a dataframe or other csv file read into R.
+Is a dataframe or other csv file read into R.
+}
+  \item{sub}{
+The name of a column in \code{x} that has the variables in it that you want to subset the data by.\code{sub} must be written exactly as how column names appear in \code{x} otherwise the function will not work. The function automatically coerces this into having levels. 
 }
   \item{fact}{
 The name of a column in \code{x} that has the variables in it that you want to make the comparisons between. \code{fact} must be written exactly as how column names appear in \code{x} otherwise the function will not work.
@@ -27,7 +29,7 @@ Either \code{TRUE} or \code{FALSE}, it allows the user to specify whether they w
 }
 }
 \details{
-The output of this function should be assigned to an object and that object used in the other functions of this package. If you want to subset by another column use \code{SubsetCleaner()} and not \code{DataCleaner()}.
+The output of this function should be assigned to an object and that object used in the other functions of this package. If you do not want to subset by a column use \code{DataCleaner()} and not \code{SubsetCleaner()}.
 }
 \value{
 %%  ~Describe the value returned
@@ -55,6 +57,7 @@ Selina A. Ruzi
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
 ##--	or do  help(data=index)  for the standard data sets.
+
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

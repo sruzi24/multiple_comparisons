@@ -1,4 +1,4 @@
-SubsetCleaner <- function(x, sub, fact, respo, warn=TRUE, ...){
+SubsetCleaner <- function(x, sub, fact, respo, warn=TRUE){
   #If the user wants to further subset the data before doing t-test 
   #comparisons then they will use this function that will then
   #call the DataCleaner function separately so you will not need to also call
