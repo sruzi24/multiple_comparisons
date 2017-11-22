@@ -9,8 +9,8 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", ..
   
   
   #define a function to conduct the t-tests
-  T_Compare <- function(y, paired=FALSE, ...){
-    trial_names <- names(temp_data) # to pull out the names of the comparisons 
+  T_Compare <- function(y, paired=paired, test=test, ...){
+    trial_names <- names(y) # to pull out the names of the comparisons 
     all_pairwise_combinations <- combn(trial_names, 2)
     p_value_outputs <- vector(mode="numeric", ncol(all_pairwise_combinations))
     comparisons <- vector(mode="character", ncol(all_pairwise_combinations))
@@ -18,20 +18,22 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", ..
     for(i in 1:ncol(all_pairwise_combinations)){
       name1 <- all_pairwise_combinations[1,i]
       name2 <- all_pairwise_combinations[2,i]
-      name1_location <- which(names(temp_data)==name1)
-      name1_data <- temp_data[[name1_location]]
-      name2_location <- which(names(temp_data)==name2)
-      name2_data <- temp_data[[name2_location]]
+      name1_location <- which(names(y)==name1)
+      name1_data <- y[[name1_location]]
+      name2_location <- which(names(y)==name2)
+      name2_data <- y[[name2_location]]
       p_value_outputs[i] <- t.test(as.numeric(name1_data), as.numeric(name2_data),
                                    paired=paired, ...)$p.value
       comparisons[i] <- paste(name1, name2, sep="-")
     }
-    list_output <- list(comparisons=comparisons, p_value_outputs=p_value_outputs)
-    return(list_output)
+    adjusted_pvalue <- p.adjust(p=p_value_outputs, method=test)
+    
+    T_F <- (adjusted_pvalue < 0.05) | (adjusted_pvalue == 0.05)
+    output_table <- data.table(Comparison=comparisons, P_values=p_value_outputs, 
+                               Ajusted_p_values=adjusted_pvalue,
+                               Significant=T_F)
+    return(output_table)
   }
-  
-  
-  
   
   
   
@@ -42,28 +44,42 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", ..
     #then compare little by little before comparing them the way that if groups
     # were false 
   if(groups == TRUE){
-    print("Groups set to TRUE")
+    num_groupings <- length(temp_data)
+    group_names <- names(temp_data)
+    #print(length(group_names))
+    table_outputs <- list(length(group_names))
+    for(i in 1:length(group_names)){
+      temporary_data <- temp_data[[i]]
+      print(temporary_data)
+      t <- T_Compare(y=temporary_data, paired=paired, test=test)
+      #print(t)
+      table_outputs[[i]] <- t
+    }
+    
+    names(table_outputs) <- group_names
+    
+    return(table_outputs)
+    #need to break about by groupsing then pass to the function that does the t-test
+    # then need to return a bunch of different tables 
+    
       }
   }
   
   #If there aren't subgroupings then do this    
   if(groups == FALSE){
     
-    temporary <- T_Compare(y=temp_data, paired=FALSE)
+    temporary <- T_Compare(y=temp_data, paired=paired, test=test)
     
-    comparisons <- temporary$comparisons
-    p_value_outputs <- as.numeric(temporary$p_value_outputs)
+    return(temporary)
     
-    adjusted_pvalue <- p.adjust(p=p_value_outputs, method=test)
-      #p_value_outputs * length(comparisons)
-    
-    T_F <- (adjusted_pvalue < 0.05) | (adjusted_pvalue == 0.05)
-    output_table <- data.table(Comparison=comparisons, P_values=p_value_outputs, 
-                               Ajusted_p_values=adjusted_pvalue,
-                               Significant=T_F)
-    return(output_table)
-    
-  } else {
+  }
+  if(groups != TRUE && groups != FALSE){
     stop("Data should be a list that was an output from either DataCleaner or SubsetCleaner")
   }
 }
+
+
+#### also need to write it to give the letters so that can graph it with the letters
+#### and need to get the average values I think to try to figure that out 
+#### though that may end up needing to be a whole different table that is output for the values
+### maybe I should just put that into the graphing function instead 
