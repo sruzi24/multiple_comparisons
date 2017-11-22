@@ -1,7 +1,10 @@
 ## test script 
 
+setwd("/Users/Selina/Documents/GitHub/multiple_comparisons")
+
 setwd("/Users/Selina/Documents/GitHub/multiple_comparisons/R")
 source("mult_compare_functions.R")
+source("subset_cleaner_function.R")
 
 ### test data
 setwd("/Users/Selina/Dropbox/Seed_Removal_BCI/Data/Data May 2015")
@@ -18,3 +21,8 @@ testing$data_frame
 testing2 <- as.data.frame(testing$data_frame)
 testing2
 class(testing2)
+names(raw_data)
+
+testing3 <- SubsetCleaner(x=raw_data, sub="Season", fact="y", respo="Total.Seeds.Removed", warn=TRUE)
+testing3 #because warnings are on and they are not in the SubsetCleaner but in the DataCleaner
+#the warnings aren't displayed when using this function. will need to add it to the SubsetCleaner

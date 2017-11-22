@@ -35,7 +35,6 @@ DataCleaner <- function(x, fact, respo, warn=TRUE){
     products <- append(list(compare_list=output1),list(data_frame=output2))
     
     return(products)
-    #return(output1)
     
     if(warn!=TRUE && warn!=FALSE) stop("Warn must be set to TRUE or FALSE")
       

@@ -19,18 +19,27 @@ SubsetCleaner <- function(x, sub, fact, respo, warn=TRUE, ...){
     x$sub <- as.factor(x[,sub_col])
     sub_names <- unique(levels(x$sub))
     numsub <- sub_names
-    
-    data_output1 <- list(numsub)
+    data_output1 <- list(numsub) #to set up an empty list of length numsub
+    data_output2 <- list(numsub) #to set up an empty list of length numsub
+    if(any(colnames(x)==fact)==TRUE && any(colnames(x)==respo)==TRUE){
+      factor_col <- which(colnames(x)==fact)
+      respo_col <- which(colnames(x)==respo)
     #to cycle through the sub names to make different dataframes that can 
     #then be passed to DataCleaner to pull out the correct information
     for(i in 1:length(sub_names)){
       temp_file <- subset(x, sub==sub_names[i])
-      temp_name <- sub_names[i]
-      data_output1[[i]] <- as.numeric(temp_file[,c(respo_col,fact_col])
+      #send this subset to the DataCleaner file to get that data set up correctly
+      temp_data <- DataCleaner(x=temp_file,fact=fact,respo=respo,warn=warn)
+      data_output1[[i]] <- temp_data$compare_list
+      data_output2[[i]] <- temp_data$data_frame
     }
     
     names(data_output1) <- sub_names
+    names(data_output2) <- sub_names
+    }
+    list_outputs <- append(list(sub_compare_list=data_output1),list(sub_data_frame=data_output2))
     
-      
+    return(list_outputs)
+    
   }else stop("Sub column not found")
 }
