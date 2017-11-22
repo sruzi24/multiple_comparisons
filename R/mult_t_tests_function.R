@@ -37,7 +37,11 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, ...){
       comparisons[i] <- paste(name1, name2, sep="-")
     }
     
-    output_table <- data.table(Comparison=comparisons, P_values=p_value_outputs)
+    adjusted_pvalue <- p_value_outputs * length(comparisons)
+    T_F <- (adjusted_pvalue < 0.05) | (adjusted_pvalue == 0.05)
+    output_table <- data.table(Comparison=comparisons, P_values=p_value_outputs, 
+                               Ajusted_p_values=adjusted_pvalue,
+                               Significant=T_F)
     return(output_table)
     
     

@@ -40,5 +40,7 @@ trial3 <- combn(trial2, 2)
 trial3[,1]
 #so each column has a different pairing, use it to index? 
 
+setwd("/Users/Selina/Documents/GitHub/multiple_comparisons/R")
+source("mult_t_tests_function.R")
 library(data.table)
 Mult_T_Tests(testing, groups=FALSE, paired=FALSE)
