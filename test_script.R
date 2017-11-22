@@ -26,3 +26,9 @@ names(raw_data)
 testing3 <- SubsetCleaner(x=raw_data, sub="Season", fact="y", respo="Total.Seeds.Removed", warn=TRUE)
 testing3 #because warnings are on and they are not in the SubsetCleaner but in the DataCleaner
 #the warnings aren't displayed when using this function. will need to add it to the SubsetCleaner
+testing4 <- SubsetCleaner(x=raw_data, sub="Season", fact="Plot", respo="Total.Seeds.Removed", warn=TRUE)
+testing4
+testing4$sub_compare_list
+length(testing4$sub_compare_list)
+testing4$sub_data_frame
+length(testing4$sub_data_frame)
