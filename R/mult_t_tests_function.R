@@ -41,6 +41,7 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", ..
       avg_outputs[i] <- mean(as.numeric(y[[ID_location]]))
     }
     summary_output <- data.table(Name=trial_names, Avg=avg_outputs)
+    summary_output <- summary_output[order(-Avg)]
     
     #to return both outputs together
     compare_outputs <- append(list(Output_table=output_table),

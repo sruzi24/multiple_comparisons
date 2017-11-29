@@ -48,7 +48,7 @@ source("mult_t_tests_function.R")
 x  <- Mult_T_Tests(testing4, groups=TRUE, paired=FALSE)
 x
 x[[2]]
-x$Wet
+
 y <- testing4$sub_compare_list
 y_wet <- y$Wet
 mean(y_wet$Pearson)
@@ -56,3 +56,9 @@ mean(y_wet$`25Ha`)
 mean(y_wet$AVA)
 mean(y_wet$Drayton)
 mean(y_wet$Zetek)
+x_wet <- x$Wet
+x_wet_summary_table <- as.data.table(x_wet$Summary_table)
+x_wet_summary_table
+sort(x_wet_summary_table)
+?sort()
+x_wet_summary_table[order(-Avg)]
