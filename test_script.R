@@ -45,4 +45,14 @@ source("mult_t_tests_function.R")
 library(data.table)
 Mult_T_Tests(testing, groups=FALSE, paired=FALSE)
 source("mult_t_tests_function.R")
-Mult_T_Tests(testing4, groups=TRUE, paired=FALSE)
+x  <- Mult_T_Tests(testing4, groups=TRUE, paired=FALSE)
+x
+x[[2]]
+x$Wet
+y <- testing4$sub_compare_list
+y_wet <- y$Wet
+mean(y_wet$Pearson)
+mean(y_wet$`25Ha`)
+mean(y_wet$AVA)
+mean(y_wet$Drayton)
+mean(y_wet$Zetek)

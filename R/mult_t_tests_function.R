@@ -32,7 +32,20 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", ..
     output_table <- data.table(Comparison=comparisons, P_values=p_value_outputs, 
                                Ajusted_p_values=adjusted_pvalue,
                                Significant=T_F)
-    return(output_table)
+    
+    #to make summary table
+    avg_outputs <- vector(mode="numeric", length(trial_names))
+    for(i in 1:length(trial_names)){
+      ID <- trial_names[i]
+      ID_location <- which(names(y)==ID)
+      avg_outputs[i] <- mean(as.numeric(y[[ID_location]]))
+    }
+    summary_output <- data.table(Name=trial_names, Avg=avg_outputs)
+    
+    #to return both outputs together
+    compare_outputs <- append(list(Output_table=output_table),
+                              list(Summary_table=summary_output))
+    return(compare_outputs)
   }
   
   
