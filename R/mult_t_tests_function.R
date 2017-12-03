@@ -1,15 +1,16 @@
-Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", ...){
+Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", alpha_value=0.05, ...){
   #data is a list output from either DataCleaner or SubsetCleaner
   #groups defaults to FALSE, but if it is true it means that the output was originally
   #from SubsetCleaner, paired=defaults to FALSE but if true will conduct a paired
   # t-test instead, test is set to "bonferroni as a default but otherwise look at the 
   #methods from p.adjust.methods, should be lowercase
+  #alpha_value defaults to 0.05 but can be changed at the user's discretion
   
   temp_data <- data[[1]]
   
   
   #define a function to conduct the t-tests
-  T_Compare <- function(y, paired=paired, test=test, ...){
+  T_Compare <- function(y, paired=paired, test=test, alpha_value=alpha_value, ...){
     trial_names <- names(y) # to pull out the names of the comparisons 
     all_pairwise_combinations <- combn(trial_names, 2)
     p_value_outputs <- vector(mode="numeric", ncol(all_pairwise_combinations))
@@ -28,7 +29,7 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", ..
     }
     adjusted_pvalue <- p.adjust(p=p_value_outputs, method=test)
     
-    T_F <- (adjusted_pvalue < 0.05) | (adjusted_pvalue == 0.05)
+    T_F <- (adjusted_pvalue < alpha_value) | (adjusted_pvalue == alpha_value)
     output_table <- data.table(Comparison=comparisons, P_values=p_value_outputs, 
                                Ajusted_p_values=adjusted_pvalue,
                                Significant=T_F)
@@ -41,6 +42,7 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", ..
       avg_outputs[i] <- mean(as.numeric(y[[ID_location]]))
     }
     summary_output <- data.table(Name=trial_names, Avg=avg_outputs)
+    #to re-order the table by decreasing average
     summary_output <- summary_output[order(-Avg)]
     
     #to return both outputs together
@@ -65,7 +67,7 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", ..
     for(i in 1:length(group_names)){
       temporary_data <- temp_data[[i]]
       print(temporary_data)
-      t <- T_Compare(y=temporary_data, paired=paired, test=test)
+      t <- T_Compare(y=temporary_data, paired=paired, test=test, alpha_value=alpha_value, ...)
       #print(t)
       table_outputs[[i]] <- t
     }
