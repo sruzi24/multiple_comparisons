@@ -84,7 +84,7 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", al
   #If there aren't subgroupings then do this    
   if(groups == FALSE){
     
-    temporary <- T_Compare(y=temp_data, paired=paired, test=test)
+    temporary <- T_Compare(y=temp_data, paired=paired, test=test, alpha_value=alpha_value, ...)
     
     return(temporary)
     
