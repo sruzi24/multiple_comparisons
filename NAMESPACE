@@ -1,0 +1,3 @@
+export(DataCleaner, SubsetCleanaer, Mult_T_Tests, GraphCompare)
+importFrom("data.table", "data.table")
+importFrom("ggplot2", "ggplot")

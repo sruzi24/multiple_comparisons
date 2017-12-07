@@ -59,13 +59,10 @@ Selina A. Ruzi
 %}
 \examples{
 ## -- Find location of package on computer
-data_path <- system.file("multiple_comparisons")
-
-## -- Set working directory to the location of the package on your computer
-setwd(data_path)
+data_path <- system.file("extdata", "Example_data.csv", package="multiple_comparisons")
 
 ## -- Read in raw data
-raw_data <- read.csv("Example_data.csv", header=TRUE)
+raw_data <- read.csv(data_path, header=TRUE)
 names(raw_data)
 # "Season"               "Plot"                 "Seed_species"        "Seed_removal_percent"
 
