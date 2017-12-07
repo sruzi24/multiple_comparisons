@@ -21,7 +21,10 @@ testing_graph <- GraphCompare(data=testing, clean_bg=TRUE,
              bold_labels=TRUE, x_label="Plot",
              y_label="Seed Removal")
 testing_graph
-
+source("graph_compare_function.R")
+GraphCompare(data=testing4, groups=TRUE, clean_bg=TRUE,
+             bold_labels=TRUE, x_label="Plot",
+             y_label="Seed Removal", vert_facet=TRUE)
 
 DataCleaner(x=raw_data, fact="y",respo="Total.Seeds.Removed") #should give an error
 DataCleaner(x=raw_data, fact="Plot",respo="y") #should give an error

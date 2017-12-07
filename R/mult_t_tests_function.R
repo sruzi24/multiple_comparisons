@@ -66,7 +66,7 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", al
     table_outputs <- list(length(group_names))
     for(i in 1:length(group_names)){
       temporary_data <- temp_data[[i]]
-      print(temporary_data)
+      #print(temporary_data)
       t <- T_Compare(y=temporary_data, paired=paired, test=test, alpha_value=alpha_value, ...)
       #print(t)
       table_outputs[[i]] <- t
