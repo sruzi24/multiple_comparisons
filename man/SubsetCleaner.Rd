@@ -54,12 +54,18 @@ Selina A. Ruzi
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+## -- Find location of package on computer
+data_path <- system.file("multiple_comparisons")
 
+## -- Set working directory to the location of the package on your computer
+setwd(data_path)
 
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+## -- Read in raw data
+raw_data <- read.csv("Example_data.csv", header=TRUE)
+names(raw_data)
+# "Season"               "Plot"                 "Seed_species"        "Seed_removal_percent"
+
+## -- If do not want to subset the data, then should use the DataCleaner function
+myCleanSubset <- SubsetCleaner(raw_data, fact="Plot", 
+respo="Seed_removal_percent", sub="Season", 
+warn=FALSE)

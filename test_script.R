@@ -262,3 +262,52 @@ for(i in 1:nrow(z)){ # z is the summary table
 
 
 testing4[[2]] # subsets out the dataframes of the different subgroups
+
+
+
+
+sample(1:100,10, replace=TRUE)
+sample(0:20, 10, replace=TRUE)
+
+?system.file
+
+#system.file(package="multiple_comparisons") #will give the location where this
+#package is saved on a computer -- will need this eventually for the checking
+#of the package stuff in the R help if I want it to run with a fiile that is 
+#installed with the package
+
+#the file that I want to be installed with the package
+setwd("/Users/Selina/Documents/GitHub/multiple_comparisons/inst/extdata")
+test_data <- read.csv("Example_data.csv", header=TRUE)
+head(test_data)
+str(test_data)
+names(test_data)
+
+setwd("/Users/Selina/Documents/GitHub/multiple_comparisons/R")
+source("mult_compare_functions.R")
+source("subset_cleaner_function.R")
+source("mult_t_tests_function.R")
+source("graph_compare_function.R")
+
+myCleanData <- DataCleaner(test_data, fact="Plot", respo="Seed_removal_percent", warn=FALSE)
+myCleanSubset <- SubsetCleaner(test_data, fact="Plot", respo="Seed_removal_percent",
+                               warn=FALSE, sub="Season")
+myCleanSubset[[1]]
+str(myCleanSubset)
+
+library(data.table)
+
+Subset_tests <- Mult_T_Tests(myCleanSubset, groups=TRUE)
+Subset_tests
+no_sub_tests <- Mult_T_Tests(myCleanData, groups=FALSE)
+no_sub_tests
+
+library(ggplot2)
+GraphCompare(myCleanSubset, groups=TRUE, 
+             clean_bg=TRUE, x_label="Plot", y_label="% Seed Removal",
+             bold_labels=TRUE, vert_facet=TRUE)
+
+GraphCompare(myCleanData, groups=FALSE,
+             clean_bg=TRUE, x_label="Plot",
+             y_label="% Seed Removal",
+             bold_labels=TRUE)
