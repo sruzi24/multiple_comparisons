@@ -54,9 +54,12 @@ Selina A. Ruzi
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-%\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-%}
+\seealso{
+\code{\link{SubsetCleaner}}
+\code{\link{DataCleaner}}
+\code{\link{t.test}}
+\code{\link{p.adjust}}
+}
 \examples{
 ## -- Find location of package on computer
 data_path <- system.file("extdata", "Example_data.csv", package="multiple_comparisons")
