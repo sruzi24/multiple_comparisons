@@ -1,2 +1,4 @@
 export(DataCleaner, SubsetCleaner, Mult_T_Tests, GraphCompare)
+importFrom("stats", "p.adjust", "t.test")
+importFrom("utils", "combn")
 

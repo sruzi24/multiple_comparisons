@@ -1,7 +1,5 @@
 \name{Mult_T_Tests}
 \alias{Mult_T_Tests}
-\alias{DataCleaner}
-\alias{SubsetCleaner}
 \title{
 Function to Conduct Multiple T-Tests
 }

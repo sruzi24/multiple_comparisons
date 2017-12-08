@@ -1,6 +1,5 @@
 \name{SubsetCleaner}
 \alias{SubsetCleaner}
-\alias{DataCleaner}
 \title{
 Function for Subsetting and Cleaning Data for Multiple Comparisons
 }
@@ -63,8 +62,8 @@ names(raw_data)
 # "Season"               "Plot"                 "Seed_species"        "Seed_removal_percent"
 
 ## -- If do not want to subset the data, then should use the DataCleaner function
-myCleanSubset <- SubsetCleaner(raw_data, fact="Plot", 
-respo="Seed_removal_percent", sub="Season", warn=FALSE)
+myCleanSubset <- SubsetCleaner(raw_data, fact=Plot, 
+respo=Seed_removal_percent, sub=Season, warn=FALSE)
 str(myCleanSubset)
 
 }

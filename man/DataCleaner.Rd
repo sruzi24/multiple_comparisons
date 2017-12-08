@@ -1,6 +1,5 @@
 \name{DataCleaner}
 \alias{DataCleaner}
-\alias{SubsetCleaner}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Function for Cleaning Data for Multiple Comparisons

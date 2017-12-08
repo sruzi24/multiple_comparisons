@@ -1,7 +1,5 @@
 \name{GraphCompare}
 \alias{GraphCompare}
-\alias{DataCleaner}
-\alias{SubsetCleaner}
 \title{
 Function to Produce Boxplots
 }
