@@ -20,10 +20,10 @@ Either \code{TRUE} or \code{FALSE}. If \code{data} came from \code{SubsetCleaner
 Either \code{TRUE} or \code{FALSE}. IF \code{TRUE} then the background of the graph will be white. The default is \code{TRUE}.
 }
   \item{x_label}{
-X axis label. Default is \code{"Variable"}.
+X axis label.
 }
   \item{y_label}{
-Y axis label. Default is \code{"Response"}.
+Y axis label.
 }
   \item{bold_labels}{
 Either \code{TRUE} or \code{FALSE}. The default is \code{FALSE}. Bolds the axes labels.

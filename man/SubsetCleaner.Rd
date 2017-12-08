@@ -29,8 +29,6 @@ Either \code{TRUE} or \code{FALSE}, it allows the user to specify whether they w
 \details{
 The output of this function should be assigned to an object and that object used in the other functions of this package. If you do not want to subset by a column use \code{DataCleaner()} and not \code{SubsetCleaner()}.
 }
-\references{
-}
 \author{
 Selina A. Ruzi
 }

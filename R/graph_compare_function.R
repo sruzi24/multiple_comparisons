@@ -1,5 +1,5 @@
-GraphCompare <- function(data, groups=FALSE, clean_bg=TRUE, x_label="Variable", 
-                         y_label="Response", bold_labels=FALSE, vert_facet=TRUE){
+GraphCompare <- function(data, groups=FALSE, clean_bg=TRUE, x_label=, 
+                         y_label=, bold_labels=FALSE, vert_facet=TRUE){
   #data is a list output from either DataCleaner or SubsetCleaner
   #groups defaults to FALSE, but if it is true it means that the output was originally from SubsetCleaner
   #clean_bg either TRUE or FALSE to determine if the background will be white or grey respectively
