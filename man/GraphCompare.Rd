@@ -45,9 +45,9 @@ Selina A. Ruzi
 }
 \examples{
 ## -- No Subsetting Example
-MyCleanData <- data(MyCleanData)
+myCleanData <- data(myCleanData)
 
-MyDataGraph <- GraphCompare(MyCleanData, groups=FALSE,
+MyDataGraph <- GraphCompare(myCleanData, groups=FALSE,
              clean_bg=TRUE, x_label="Plot",
              y_label="% Seed Removal",
              bold_labels=TRUE)
@@ -55,9 +55,9 @@ MyDataGraph
 
 
 ## -- Subsetting Example
-MyCleanSubset <- data(MyCleanSubset)
+myCleanSubset <- data(myCleanSubset)
 
-MySubsetGraph <- GraphCompare(MyCleanSubset, groups=TRUE, 
+MySubsetGraph <- GraphCompare(myCleanSubset, groups=TRUE, 
              clean_bg=TRUE, x_label="Plot", y_label="% Seed Removal",
              bold_labels=TRUE, vert_facet=TRUE)
 MySubsetGraph

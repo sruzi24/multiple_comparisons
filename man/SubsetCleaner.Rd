@@ -44,7 +44,7 @@ Example_data <- read.csv(mypath, header=TRUE)
 names(Example_data)
 
 ## -- If do not want to subset the data, then should use the DataCleaner function
-MyCleanSubset <- SubsetCleaner(Example_data, fact="Plot", 
+myCleanSubset <- SubsetCleaner(Example_data, fact="Plot", 
 respo="Seed_removal_percent", sub="Season", warn=FALSE)
 str(myCleanSubset)
 

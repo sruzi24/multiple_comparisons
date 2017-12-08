@@ -41,7 +41,7 @@ Example_data <- read.csv(mypath, header=TRUE)
 names(Example_data)
 
 ## -- If do not want to further subset the data, do the following
-MyCleanData <- DataCleaner(Example_data, fact="Plot", 
+myCleanData <- DataCleaner(Example_data, fact="Plot", 
 respo="Seed_removal_percent", 
 warn=FALSE)
 }
