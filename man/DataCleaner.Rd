@@ -33,11 +33,7 @@ Selina A. Ruzi
 \code{\link{SubsetCleaner}}
 }
 \examples{
-## -- Find location of package on computer
-data_path <- system.file("extdata", "Example_data.csv", package="multiple_comparisons")
-
-## -- Read in raw data
-raw_data <- read.csv(data_path, header=TRUE)
+raw_data <- data(Example_data)
 names(raw_data)
 # "Season"               "Plot"                 "Seed_species"        "Seed_removal_percent"
 
