@@ -1,6 +1,14 @@
-GraphCompare <- function(data, groups=FALSE, clean_bg=TRUE, x_label="Variable", y_label="Response", bold_labels=FALSE, vert_facet=TRUE){
+GraphCompare <- function(data, groups=FALSE, clean_bg=TRUE, x_label="Variable", 
+                         y_label="Response", bold_labels=FALSE, vert_facet=TRUE){
+  #data is a list output from either DataCleaner or SubsetCleaner
+  #groups defaults to FALSE, but if it is true it means that the output was originally from SubsetCleaner
+  #clean_bg either TRUE or FALSE to determine if the background will be white or grey respectively
+  #x_label and y_label to alter the axes labels otherwise defaults to "Variable" and "Response"
+  #bold_labels either TRUE or FALSE to have axes labeles bold or not
+  #vert_facet either TRUE or FALSE. Argument is only used if groups=TRUE to facet the subgroups either vertically or horizonatally
   
-  temp_data <- data[[2]]
+  #pulls out the dataframe from the list generated from DataCleaner or SubsetCleaner
+  temp_data <- data[[2]] 
   
   # as though there are no subgroupings
   #base plot the graph
@@ -9,36 +17,35 @@ GraphCompare <- function(data, groups=FALSE, clean_bg=TRUE, x_label="Variable", 
   }
   
   if(groups == TRUE){
-    # need to get the different parts out of the 
-    # data[[2]], then need to bind them together into
-    # one dataframe, then need to make the base graph of it
-    
-    #temp_data2 will be the final dataframe that will be used in the graphing
+    #to determine how many subgroups
     num_groupings <- length(temp_data)
+    #to pull out the subgroup names
     group_names <- names(temp_data)
     
-    #need to initialize a dataframe here ---
+    #Initialize a dataframe
     temp_data2 <- data.frame(variable=as.factor(character()),
                      response=numeric(),
                      sub_name=as.factor(character()))
-    #index <- 1
+    
+    #loop through the subgroups to merge them all together
+    #into one dataframe to graph from
     for(i in 1:length(group_names)){
       current_data <- temp_data[[i]]
       sub_name <- rep(group_names[i], nrow(current_data))
-      # still working on this part here
       current_data_frame <- cbind(current_data, sub_name)
-      #print(current_data_frame)
+      #print(current_data_frame) #for debugging
       names(current_data_frame) <- c("variable", "response","sub_name")
       if(i == 1){
         temp_data2 <- current_data_frame
-        #print(temp_data2) for debugging
+        #print(temp_data2) # for debugging
       } else {
         temp_data2 <- rbind(temp_data2, current_data_frame)
-        #print(temp_data2) for debugging
+        #print(temp_data2) # for debugging
       }
 
     }
     
+    #base graph for when groups=TRUE
     a <- ggplot(temp_data2, aes(x=variable, y=response))+geom_boxplot()
     
     if(vert_facet == TRUE){

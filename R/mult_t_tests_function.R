@@ -6,6 +6,7 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", al
   #methods from p.adjust.methods, should be lowercase
   #alpha_value defaults to 0.05 but can be changed at the user's discretion
   
+  #pulls out the list from the list generated from DataCleaner or SubsetCleaner
   temp_data <- data[[1]]
   
   
@@ -56,32 +57,27 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", al
   #to check if the input is a list
   if(is.list(data)==TRUE){
   
-  #If there are subgroups will need to break them up into different sections to 
-    #then compare little by little before comparing them the way that if groups
-    # were false 
+  #If there are subgroups breaks them up into different sections to then compare little by little 
   if(groups == TRUE){
     num_groupings <- length(temp_data)
     group_names <- names(temp_data)
-    #print(length(group_names))
+    #print(length(group_names)) # for debugging
     table_outputs <- list(length(group_names))
     for(i in 1:length(group_names)){
       temporary_data <- temp_data[[i]]
-      #print(temporary_data)
+      #print(temporary_data) # for debugging
       t <- T_Compare(y=temporary_data, paired=paired, test=test, alpha_value=alpha_value, ...)
-      #print(t)
+      #print(t) # for debugging
       table_outputs[[i]] <- t
     }
     
     names(table_outputs) <- group_names
     
     return(table_outputs)
-    #need to break about by groupsing then pass to the function that does the t-test
-    # then need to return a bunch of different tables 
-    
       }
   }
   
-  #If there aren't subgroupings then do this    
+  #If groups=FALSE do this
   if(groups == FALSE){
     
     temporary <- T_Compare(y=temp_data, paired=paired, test=test, alpha_value=alpha_value, ...)
@@ -93,9 +89,3 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", al
     stop("Data should be a list that was an output from either DataCleaner or SubsetCleaner")
   }
 }
-
-
-#### also need to write it to give the letters so that can graph it with the letters
-#### and need to get the average values I think to try to figure that out 
-#### though that may end up needing to be a whole different table that is output for the values
-### maybe I should just put that into the graphing function instead 

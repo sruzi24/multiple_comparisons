@@ -11,6 +11,7 @@ SubsetCleaner <- function(x, sub, fact, respo, warn=TRUE){
   #sub = name of the column that want to subset the data by
   #... arguments to pass onto other functions if desired 
   
+  #check to make sure that the input is a dataframe and if not make it one
   if(is.data.frame(x)==FALSE) x <- as.data.frame(x)
   
   #to check if the column to subset by is in the dataframe
@@ -18,6 +19,7 @@ SubsetCleaner <- function(x, sub, fact, respo, warn=TRUE){
     
     sub_col <- which(colnames(x)==sub)
     x$sub <- as.factor(x[,sub_col])
+    #figure out how many subgroups there are
     sub_names <- unique(levels(x$sub))
     numsub <- sub_names
     data_output1 <- list(numsub) #to set up an empty list of length numsub
