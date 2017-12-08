@@ -1,4 +1,4 @@
-GraphCompare <- function(data, groups=FALSE, clean_bg=TRUE, x_label="Variable", y_label="Response", bold_labels=FALSE, vert_facet=TRUE,...){
+GraphCompare <- function(data, groups=FALSE, clean_bg=TRUE, x_label="Variable", y_label="Response", bold_labels=FALSE, vert_facet=TRUE){
   
   temp_data <- data[[2]]
   

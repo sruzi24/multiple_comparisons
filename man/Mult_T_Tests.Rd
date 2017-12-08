@@ -59,6 +59,7 @@ Selina A. Ruzi
 \code{\link{DataCleaner}}
 \code{\link{t.test}}
 \code{\link{p.adjust}}
+\code{\link{data.table}}
 }
 \examples{
 ## -- Find location of package on computer
