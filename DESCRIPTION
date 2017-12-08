@@ -1,6 +1,6 @@
 Package: multiple_comparisons
 Version: 0.0
-Date: 
+Date: 2017-12-08
 Title: Multiple T Test Comparisons
 Authors@R: person("Selina A.", "Ruzi", role=c("aut","cre"),
 email="ruzi2@illinois.edu")
@@ -10,6 +10,5 @@ Description: This package includes functions to clean a
   dataset from a dataframe, subset the dataframe,conduct 
   multiple t-tests, and plot boxplots of the data both subsetted
   or not. 
-Url:
 Imports: data.table, ggplot2
 License: GPL-3
