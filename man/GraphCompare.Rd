@@ -44,22 +44,26 @@ Selina A. Ruzi
 \code{\link{ggplot}}
 }
 \examples{
-## -- No Subsetting Example
-myCleanData <- data(myCleanData)
+## -- find path
+mypath <- system.file("extdata", "Example_data.csv", package="multipleComparisons")
 
-MyDataGraph <- GraphCompare(myCleanData, groups=FALSE,
-             clean_bg=TRUE, x_label="Plot",
-             y_label="% Seed Removal",
-             bold_labels=TRUE)
+## -- read in data
+Example_data <- read.csv(mypath, header=TRUE)
+names(Example_data)
+
+## -- If do not want to further subset the data, do the following
+myCleanData <- DataCleaner(Example_data, fact="Plot", 
+respo="Seed_removal_percent", 
+warn=FALSE)
+
+MyDataGraph <- GraphCompare(myCleanData, groups=FALSE, clean_bg=TRUE, x_label="Plot", y_labe ="Seed Removal Percent", bold_labels=TRUE)
 MyDataGraph
 
 
 ## -- Subsetting Example
-myCleanSubset <- data(myCleanSubset)
+myCleanSubset <- SubsetCleaner(Example_data, fact="Plot", respo="Seed_removal_percent", sub ="Season", warn=FALSE)
 
-MySubsetGraph <- GraphCompare(myCleanSubset, groups=TRUE, 
-             clean_bg=TRUE, x_label="Plot", y_label="% Seed Removal",
-             bold_labels=TRUE, vert_facet=TRUE)
+MySubsetGraph <- GraphCompare(myCleanSubset, groups=TRUE, clean_bg=TRUE, x_label="Plot", y_label="Seed Removal Percent", bold_labels=TRUE, vert_facet=TRUE)
 MySubsetGraph
 
 }

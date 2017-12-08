@@ -7,13 +7,21 @@ GraphCompare <- function(data, groups=FALSE, clean_bg=TRUE, x_label,
   #bold_labels either TRUE or FALSE to have axes labeles bold or not
   #vert_facet either TRUE or FALSE. Argument is only used if groups=TRUE to facet the subgroups either vertically or horizonatally
   
-  #pulls out the dataframe from the list generated from DataCleaner or SubsetCleaner
-  temp_data <- data[[2]] 
+  
+  #pulls out the dataframe from the list generated from DataCleaner
+  #if(groups == FALSE) { temp_data <- as.data.frame(data[["data_frame"]]) }
+
+  #pulls out the dataframe from the list generated from SubsetCleaner
+  #if(groups == TRUE) { temp_data <- as.data.frame(data[["sub_data_frame"]]) }
+  
+  #data_length <- length(data)
+  
+  temp_data <- data[[2]]
   
   # as though there are no subgroupings
   #base plot the graph
   if(groups == FALSE){
-  a <- ggplot(temp_data, aes(x=variable,y=response))+ geom_boxplot()
+  a <- ggplot(temp_data, aes(x=temp_data$variable,y=temp_data$response))+ geom_boxplot()
   }
   
   if(groups == TRUE){
@@ -31,9 +39,11 @@ GraphCompare <- function(data, groups=FALSE, clean_bg=TRUE, x_label,
     #into one dataframe to graph from
     for(i in 1:length(group_names)){
       current_data <- temp_data[[i]]
-      sub_name <- rep(group_names[i], nrow(current_data))
+      n_row <- nrow(current_data)
+      sub_name <- rep(group_names[i], times=n_row)
       current_data_frame <- cbind(current_data, sub_name)
       #print(current_data_frame) #for debugging
+      current_data_frame <- as.data.frame(current_data_frame)
       names(current_data_frame) <- c("variable", "response","sub_name")
       if(i == 1){
         temp_data2 <- current_data_frame
@@ -46,7 +56,7 @@ GraphCompare <- function(data, groups=FALSE, clean_bg=TRUE, x_label,
     }
     
     #base graph for when groups=TRUE
-    a <- ggplot(temp_data2, aes(x=variable, y=response))+geom_boxplot()
+    a <- ggplot(temp_data2, aes(x=temp_data2$variable, y=temp_data2$response))+geom_boxplot()
     
     if(vert_facet == TRUE){
     a <- a+ facet_grid(factor(sub_name) ~ .) # facet vertically

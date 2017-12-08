@@ -43,16 +43,25 @@ Selina A. Ruzi
 \code{\link{data.table}}
 }
 \examples{
+## -- find path
+mypath <- system.file("extdata", "Example_data.csv", package="multipleComparisons")
+
+## -- read in data
+Example_data <- read.csv(mypath, header=TRUE)
+names(Example_data)
+
+## -- If do not want to further subset the data, do the following
+myCleanData <- DataCleaner(Example_data, fact="Plot", 
+respo="Seed_removal_percent", 
+warn=FALSE)
+
 ## -- No Subsetting Example
-
-myCleanData <- data(myCleanData)
-
 myDataTests <- Mult_T_Tests(myCleanData, groups=FALSE)
 
 
 ## -- Subsetting Example
-myCleanSubset <- data(myCleanSubset)
+
+myCleanSubset <- SubsetCleaner(Example_data, fact="Plot", respo="Seed_removal_percent", sub ="Season", warn=FALSE)
 
 mySubsetTests <- Mult_T_Tests(myCleanSubset, groups=TRUE)
-str(MuSubsetTests)
 }

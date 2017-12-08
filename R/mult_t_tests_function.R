@@ -44,7 +44,7 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", al
     }
     summary_output <- data.table(Name=trial_names, Avg=avg_outputs)
     #to re-order the table by decreasing average
-    summary_output <- summary_output[order(-Avg)]
+    summary_output <- summary_output[order(-summary_output$Avg)]
     
     #to return both outputs together
     compare_outputs <- append(list(Output_table=output_table),
