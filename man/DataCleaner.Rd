@@ -33,12 +33,11 @@ Selina A. Ruzi
 \code{\link{SubsetCleaner}}
 }
 \examples{
-raw_data <- data(Example_data)
-names(raw_data)
-# "Season"               "Plot"                 "Seed_species"        "Seed_removal_percent"
+Example_data <- data(Example_data)
+names(Example_data)
 
 ## -- If do not want to further subset the data, do the following
-myCleanData <- DataCleaner(raw_data, fact="Plot", 
+MyCleanData <- DataCleaner(Example_data, fact="Plot", 
 respo="Seed_removal_percent", 
 warn=FALSE)
 }

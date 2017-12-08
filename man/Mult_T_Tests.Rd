@@ -45,14 +45,14 @@ Selina A. Ruzi
 \examples{
 ## -- No Subsetting Example
 
-myCleanData <- data(myCleanData)
+MyCleanData <- data(myCleanData)
 
-myDataTests <- Mult_T_Tests(myCleanData, groups=FALSE)
+MyDataTests <- Mult_T_Tests(MyCleanData, groups=FALSE)
 str(myDataTests)
 
 ## -- Subsetting Example
-myCleanSubset <- data(myCleanSubset)
+MyCleanSubset <- data(MyCleanSubset)
 
-MySubsetTests <- Mult_T_Tests(myCleanSubset, groups=TRUE)
+MySubsetTests <- Mult_T_Tests(MyCleanSubset, groups=TRUE)
 str(MuSubsetTests)
 }
