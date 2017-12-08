@@ -14,6 +14,7 @@ setwd("/Users/Selina/Dropbox/Seed_Removal_BCI/Data/Data May 2015")
 raw_data<-read.csv("2013_aboveground_totals_may2015.csv")
 names(raw_data)
 testing<-DataCleaner(x=raw_data, fact="Plot",respo="Total.Seeds.Removed", warn=TRUE)
+
 GraphCompare(data=testing)
 GraphCompare(data=testing, clean_bg=TRUE)
 GraphCompare(data=testing, clean_bg=FALSE)

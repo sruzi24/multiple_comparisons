@@ -9,7 +9,6 @@ This function takes a list created by either \code{SubsetCleaner} or \code{DataC
 \usage{
 GraphCompare(data, groups = FALSE, clean_bg = TRUE, x_label = "Variable", y_label = "Response", bold_labels = FALSE, vert_facet = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
 Is a list output from either \code{SubsetCleaner} or \code{DataCleaner}
@@ -33,19 +32,12 @@ Either \code{TRUE} or \code{FALSE}. The default is \code{FALSE}. Bolds the axes 
 Either \code{TRUE} or \code{FALSE}. The default is \code{TRUE}. If \code{groups=TRUE} then this determines whether the subgroupings are separated and graphed vertically (\code{TRUE}) or horizontally (\code{FALSE}).
 }
 }
-%\details{
-%%  ~~ If necessary, more details than the description above ~~
-%}
 \value{
 A graph is returned.
 }
 \author{
 Selina A. Ruzi
 }
-%\note{
-%%  ~~further notes~~
-%}
-
 \seealso{
 \code{\link{SubsetCleaner}}
 \code{\link{DataCleaner}}
@@ -83,7 +75,3 @@ MySubsetGraph <- GraphCompare(myCleanSubset, groups=TRUE,
 MySubsetGraph
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-%\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

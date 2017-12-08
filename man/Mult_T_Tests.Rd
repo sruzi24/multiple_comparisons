@@ -9,7 +9,6 @@ This function takes a list created by either \code{SubsetCleaner} or \code{DataC
 \usage{
 Mult_T_Tests(data, groups = FALSE, paired = FALSE, test = "bonferroni", alpha_value = 0.05, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
 Is a list output from either \code{SubsetCleaner} or \code{DataCleaner}
@@ -33,25 +32,9 @@ Other arguments to be passed to \code{t.test}.
 \details{
 The outupt of this function is a list consisting of a table with the comparison, p-values, adjusted p-values, and whether the adjusted p-value is less than or equal to the alpha value, and a table with the \code{fact} sorted from highest to lowest. 
 }
-%\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-%}
-%\references{
-%% ~put references to the literature/web site here ~
-%}
 \author{
 Selina A. Ruzi
 }
-%\note{
-%%  ~~further notes~~
-%}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
 \code{\link{SubsetCleaner}}
 \code{\link{DataCleaner}}
@@ -84,8 +67,3 @@ warn=FALSE)
 MySubsetTests <- Mult_T_Tests(myCleanSubset, groups=TRUE)
 str(MuSubsetTests)
 }
-
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-%\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -1,4 +1,6 @@
 export(DataCleaner, SubsetCleaner, Mult_T_Tests, GraphCompare)
 importFrom("stats", "p.adjust", "t.test")
 importFrom("utils", "combn")
+importFrom("ggplot2", "ggplot", "xlab", "ylab", "geom_boxplot", "aes", "facet_grid",
+           "theme","element_text", "element_rect", "element_line", "element_blank")
 

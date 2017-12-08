@@ -9,7 +9,6 @@ This function takes a data file, the user's choice of column to subset the data 
 \usage{
 SubsetCleaner(x, sub, fact, respo, warn = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 Is a dataframe or other csv file read into R.
@@ -30,25 +29,11 @@ Either \code{TRUE} or \code{FALSE}, it allows the user to specify whether they w
 \details{
 The output of this function should be assigned to an object and that object used in the other functions of this package. If you do not want to subset by a column use \code{DataCleaner()} and not \code{SubsetCleaner()}.
 }
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
 \references{
-%% ~put references to the literature/web site here ~
 }
 \author{
 Selina A. Ruzi
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
 \code{\link{DataCleaner}}
 }
@@ -62,8 +47,8 @@ names(raw_data)
 # "Season"               "Plot"                 "Seed_species"        "Seed_removal_percent"
 
 ## -- If do not want to subset the data, then should use the DataCleaner function
-myCleanSubset <- SubsetCleaner(raw_data, fact=Plot, 
-respo=Seed_removal_percent, sub=Season, warn=FALSE)
+myCleanSubset <- SubsetCleaner(raw_data, fact="Plot", 
+respo="Seed_removal_percent", sub="Season", warn=FALSE)
 str(myCleanSubset)
 
 }
