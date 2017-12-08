@@ -33,7 +33,11 @@ Selina A. Ruzi
 \code{\link{SubsetCleaner}}
 }
 \examples{
-Example_data <- data(Example_data)
+## -- find path
+mypath <- system.file("extdata", "Example_data.csv", package="multipleComparisons")
+
+## -- read in data
+Example_data <- read.csv(mypath, header=TRUE)
 names(Example_data)
 
 ## -- If do not want to further subset the data, do the following

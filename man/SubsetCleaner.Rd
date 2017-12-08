@@ -36,11 +36,15 @@ Selina A. Ruzi
 \code{\link{DataCleaner}}
 }
 \examples{
-Example_data <- data(Example_data)
+## -- find path
+mypath <- system.file("extdata", "Example_data.csv", package="multipleComparisons")
+
+## -- read in data
+Example_data <- read.csv(mypath, header=TRUE)
 names(Example_data)
 
 ## -- If do not want to subset the data, then should use the DataCleaner function
-MyCleanSubset <- SubsetCleaner(raw_data, fact="Plot", 
+MyCleanSubset <- SubsetCleaner(Example_data, fact="Plot", 
 respo="Seed_removal_percent", sub="Season", warn=FALSE)
 str(myCleanSubset)
 

@@ -45,7 +45,7 @@ Selina A. Ruzi
 \examples{
 ## -- No Subsetting Example
 
-MyCleanData <- data(myCleanData)
+MyCleanData <- data(MyCleanData)
 
 MyDataTests <- Mult_T_Tests(MyCleanData, groups=FALSE)
 str(myDataTests)
