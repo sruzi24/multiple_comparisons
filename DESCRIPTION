@@ -10,5 +10,6 @@ Description: This package includes functions to clean a
   dataset from a dataframe, subset the dataframe,conduct 
   multiple t-tests, and plot boxplots of the data both subsetted
   or not. 
+URL: https://github.com/sruzi24/multiple_comparisons
 Imports: data.table, ggplot2
 License: GPL-3
