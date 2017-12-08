@@ -31,7 +31,7 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", al
     adjusted_pvalue <- p.adjust(p=p_value_outputs, method=test)
     
     T_F <- (adjusted_pvalue < alpha_value) | (adjusted_pvalue == alpha_value)
-    output_table <- data.table(Comparison=comparisons, P_values=p_value_outputs, 
+    output_table <- data.table::data.table(Comparison=comparisons, P_values=p_value_outputs, 
                                Ajusted_p_values=adjusted_pvalue,
                                Significant=T_F)
     

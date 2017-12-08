@@ -43,26 +43,15 @@ Selina A. Ruzi
 \code{\link{data.table}}
 }
 \examples{
-## -- Find location of package on computer
-data_path <- system.file("extdata", "Example_data.csv", package="multiple_comparisons")
-
-## -- Read in raw data
-raw_data <- read.csv(data_path, header=TRUE)
-names(raw_data)
-# "Season"               "Plot"                 "Seed_species"        "Seed_removal_percent"
-
 ## -- No Subsetting Example
-myCleanData <- DataCleaner(raw_data, fact="Plot", 
-respo="Seed_removal_percent", 
-warn=FALSE)
+
+myCleanData <- data(myCleanData)
 
 myDataTests <- Mult_T_Tests(myCleanData, groups=FALSE)
 str(myDataTests)
 
 ## -- Subsetting Example
-myCleanSubset <- SubsetCleaner(raw_data, fact="Plot", 
-respo="Seed_removal_percent", sub="Season", 
-warn=FALSE)
+myCleanSubset <- data(myCleanSubset)
 
 MySubsetTests <- Mult_T_Tests(myCleanSubset, groups=TRUE)
 str(MuSubsetTests)
