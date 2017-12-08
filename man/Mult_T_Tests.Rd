@@ -76,6 +76,7 @@ respo="Seed_removal_percent",
 warn=FALSE)
 
 myDataTests <- Mult_T_Tests(myCleanData, groups=FALSE)
+str(myDataTests)
 
 ## -- Subsetting Example
 myCleanSubset <- SubsetCleaner(raw_data, fact="Plot", 
@@ -83,7 +84,8 @@ respo="Seed_removal_percent", sub="Season",
 warn=FALSE)
 
 MySubsetTests <- Mult_T_Tests(myCleanSubset, groups=TRUE)
-
+str(MuSubsetTests)
+}
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

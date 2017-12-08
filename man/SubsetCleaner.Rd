@@ -64,5 +64,7 @@ names(raw_data)
 
 ## -- If do not want to subset the data, then should use the DataCleaner function
 myCleanSubset <- SubsetCleaner(raw_data, fact="Plot", 
-respo="Seed_removal_percent", sub="Season", 
-warn=FALSE)
+respo="Seed_removal_percent", sub="Season", warn=FALSE)
+str(myCleanSubset)
+
+}

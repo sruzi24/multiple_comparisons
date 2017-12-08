@@ -64,3 +64,4 @@ names(raw_data)
 myCleanData <- DataCleaner(raw_data, fact="Plot", 
 respo="Seed_removal_percent", 
 warn=FALSE)
+}
