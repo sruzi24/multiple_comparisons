@@ -29,6 +29,10 @@ Either \code{TRUE} or \code{FALSE}, it allows the user to specify whether they w
 \details{
 The output of this function should be assigned to an object and that object used in the other functions of this package. If you do not want to subset by a column use \code{DataCleaner()} and not \code{SubsetCleaner()}.
 }
+\value{
+\item{sub_compare_list} {a list of the \code{sub} levels each containing a list with all \code{fact} levels with the associated \code{respo} values }
+\item{sub_data_frame} {a list of the \code{sub} levels each containing a dataframe of the \code{fact} and \code{respo} values}
+}
 \author{
 Selina A. Ruzi
 }
@@ -45,5 +49,6 @@ names(Example_data)
 
 ## -- If do not want to subset the data, then should use the DataCleaner function
 myCleanSubset <- SubsetCleaner(Example_data, fact="Plot", 
-respo="Seed_removal_percent", sub="Season", warn=FALSE)
+                               respo="Seed_removal_percent", sub="Season", 
+                               warn=FALSE)
 }

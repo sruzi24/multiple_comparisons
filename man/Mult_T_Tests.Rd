@@ -7,7 +7,8 @@ Function to Conduct Multiple T-Tests
 This function takes a list created by either \code{SubsetCleaner} or \code{DataCleaner} and conducts multiple t-test comparissons between the \code{fact} levels. 
 }
 \usage{
-Mult_T_Tests(data, groups = FALSE, paired = FALSE, test = "bonferroni", alpha_value = 0.05, ...)
+Mult_T_Tests(data, groups = FALSE, paired = FALSE, test = "bonferroni", 
+             alpha_value = 0.05, ...)
 }
 \arguments{
   \item{data}{
@@ -29,8 +30,9 @@ Defaults to \code{0.05}. This is the orignal p-value that will be manipulated ba
 Other arguments to be passed to \code{t.test}. 
 }
 }
-\details{
-The outupt of this function is a list consisting of a table with the comparison, p-values, adjusted p-values, and whether the adjusted p-value is less than or equal to the alpha value, and a table with the \code{fact} sorted from highest to lowest. 
+\value{
+\item{Output_table} {consisting of a table with the comparison, p-values, adjusted p-values, and whether the adjusted p-value is less than or equal to the alpha value}
+\item{Summary_table} {a table with the \code{fact} levels and associated average \code{respo}, sorted from highest to lowest}
 }
 \author{
 Selina A. Ruzi
@@ -61,7 +63,8 @@ myDataTests <- Mult_T_Tests(myCleanData, groups=FALSE)
 
 ## -- Subsetting Example
 
-myCleanSubset <- SubsetCleaner(Example_data, fact="Plot", respo="Seed_removal_percent", sub ="Season", warn=FALSE)
+myCleanSubset <- SubsetCleaner(Example_data, fact="Plot", respo="Seed_removal_percent", 
+                               sub ="Season", warn=FALSE)
 
 mySubsetTests <- Mult_T_Tests(myCleanSubset, groups=TRUE)
 }

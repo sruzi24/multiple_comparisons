@@ -7,7 +7,8 @@ Function to Produce Boxplots
 This function takes a list created by either \code{SubsetCleaner} or \code{DataCleaner} and graphs boxplots for each of the \code{fact} levels. 
 }
 \usage{
-GraphCompare(data, groups = FALSE, clean_bg = TRUE, x_label, y_label, bold_labels = FALSE, vert_facet = TRUE)
+GraphCompare(data, groups = FALSE, clean_bg = TRUE, x_label, y_label, 
+             bold_labels = FALSE, vert_facet = TRUE)
 }
 \arguments{
   \item{data}{
@@ -56,14 +57,18 @@ myCleanData <- DataCleaner(Example_data, fact="Plot",
 respo="Seed_removal_percent", 
 warn=FALSE)
 
-MyDataGraph <- GraphCompare(myCleanData, groups=FALSE, clean_bg=TRUE, x_label="Plot", y_labe ="Seed Removal Percent", bold_labels=TRUE)
+MyDataGraph <- GraphCompare(myCleanData, groups=FALSE, clean_bg=TRUE, x_label="Plot",
+                            y_label ="Seed Removal Percent", bold_labels=TRUE)
 MyDataGraph
 
 
 ## -- Subsetting Example
-myCleanSubset <- SubsetCleaner(Example_data, fact="Plot", respo="Seed_removal_percent", sub ="Season", warn=FALSE)
+myCleanSubset <- SubsetCleaner(Example_data, fact="Plot", respo="Seed_removal_percent", 
+                        sub ="Season", warn=FALSE)
 
-MySubsetGraph <- GraphCompare(myCleanSubset, groups=TRUE, clean_bg=TRUE, x_label="Plot", y_label="Seed Removal Percent", bold_labels=TRUE, vert_facet=TRUE)
+MySubsetGraph <- GraphCompare(myCleanSubset, groups=TRUE, clean_bg=TRUE, x_label="Plot",
+                              y_label="Seed Removal Percent", bold_labels=TRUE, 
+                              vert_facet=TRUE)
 MySubsetGraph
 
 }
