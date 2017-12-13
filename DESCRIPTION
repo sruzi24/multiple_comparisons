@@ -7,5 +7,5 @@ Author: Selina A. Ruzi [aut, cre]
 Maintainer: Selina A. Ruzi <ruzi2@illinois.edu>
 Description: This package includes functions to clean a dataset from a dataframe, subset the dataframe, conduct multiple t-tests, and plot boxplots of the data both subsetted or not. 
 URL: https://github.com/sruzi24/multiple_comparisons
-Depends: ggplot2, data.table
+Imports: ggplot2, data.table
 License: GPL-3
