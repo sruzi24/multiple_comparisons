@@ -31,8 +31,8 @@ Other arguments to be passed to \code{t.test}.
 }
 }
 \value{
-\item{Output_table} {consisting of a table with the comparison, p-values, adjusted p-values, and whether the adjusted p-value is less than or equal to the alpha value}
-\item{Summary_table} {a table with the \code{fact} levels and associated average \code{respo}, sorted from highest to lowest}
+\item{Output_table}{consisting of a table with the comparison, p-values, adjusted p-values, and whether the adjusted p-value is less than or equal to the alpha value}
+\item{Summary_table}{a table with the \code{fact} levels and associated average \code{respo}, sorted from highest to lowest}
 }
 \author{
 Selina A. Ruzi
