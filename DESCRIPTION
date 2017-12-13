@@ -1,5 +1,5 @@
 Package: multipleComparisons
-Version: 1.0
+Version: 1.0.1
 Date: 2017-12-08
 Title: Multiple T Test Comparisons
 Authors@R: person("Selina A.", "Ruzi", role=c("aut","cre"), email="ruzi2@illinois.edu")
