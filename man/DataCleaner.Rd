@@ -27,7 +27,7 @@ Either \code{TRUE} or \code{FALSE}, it allows the user to specify whether they w
 The output of this function should be assigned to an object and that object used in the other functions of this package. If you want to subset by another column use \code{SubsetCleaner()} and not \code{DataCleaner()}.
 }
 \value{
-\item{compare_list}{a list containing the level of the \code{fact} with the associated} \code{respo} values}
+\item{compare_list}{a list containing the level of the \code{fact} with the associated \code{respo} values}
 \item{data_frame}{a dataframe of the \code{fact} and \code{respo} values}
 }
 \author{
