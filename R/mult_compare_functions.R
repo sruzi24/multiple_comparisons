@@ -7,6 +7,9 @@ DataCleaner <- function(x, fact, respo, warn=TRUE){
   
   #check to make sure that the input is a dataframe and if not make it one
   if(is.data.frame(x)==FALSE) x <- as.data.frame(x)
+  
+  if(warn!=TRUE && warn!=FALSE) stop("Warn must be set to TRUE or FALSE")
+  
   if(any(colnames(x)==fact)==TRUE && any(colnames(x)==respo)==TRUE){
     factor_col <- which(colnames(x)==fact)
     respo_col <- which(colnames(x)==respo)
@@ -19,9 +22,10 @@ DataCleaner <- function(x, fact, respo, warn=TRUE){
     x$fact <- as.factor(x[,factor_col])
     x$respo <- as.numeric(x[,respo_col])
     factor_names <- unique(levels(x$fact))
-    numfactors <- factor_names
+    numfactors <- length(factor_names)
     
-    output1 <- list(numfactors) # setting up a list so that can output a list of the
+    output1 <- list()
+    length(output1) <- numfactors # setting up a list so that can output a list of the
     #different numeric variables by factor for easier use in making multiple t-test
     #comparisons
     
@@ -36,12 +40,9 @@ DataCleaner <- function(x, fact, respo, warn=TRUE){
     output2 <- as.data.frame(cbind(variable=x$fact,response=x$respo))
     output2$variable <- as.factor(x$fact)
     
-    products <- append(list(compare_list=output1),list(data_frame=output2))
+    products <-list(compare_list=output1, data_frame=output2)
     
     return(products)
-    
-    if(warn!=TRUE && warn!=FALSE) stop("Warn must be set to TRUE or FALSE")
-      
     
   }else {
     stop("Fact and/or respo column name(s) not found")} 

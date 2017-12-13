@@ -9,6 +9,9 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", al
   #pulls out the list from the list generated from DataCleaner or SubsetCleaner
   temp_data <- data[[1]]
   
+  if(groups != TRUE && groups != FALSE){
+    stop("Data should be a list that was an output from either DataCleaner or SubsetCleaner")
+  }
   
   #define a function to conduct the t-tests
   T_Compare <- function(y, paired=paired, test=test, alpha_value=alpha_value, ...){
@@ -30,18 +33,15 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", al
     }
     adjusted_pvalue <- p.adjust(p=p_value_outputs, method=test)
     
-    T_F <- (adjusted_pvalue < alpha_value) | (adjusted_pvalue == alpha_value)
+    T_F <- (adjusted_pvalue <= alpha_value)
     output_table <- data.table::data.table(Comparison=comparisons, P_values=p_value_outputs, 
                                Ajusted_p_values=adjusted_pvalue,
                                Significant=T_F)
     
-    #to make summary table
-    avg_outputs <- vector(mode="numeric", length(trial_names))
-    for(i in 1:length(trial_names)){
-      ID <- trial_names[i]
-      ID_location <- which(names(y)==ID)
-      avg_outputs[i] <- mean(as.numeric(y[[ID_location]]))
-    }
+    #making a summary table
+    
+    avg_outputs <- sapply(y, mean)
+    
     summary_output <- data.table(Name=trial_names, Avg=avg_outputs)
     #to re-order the table by decreasing average
     summary_output <- summary_output[order(-summary_output$Avg)]
@@ -53,29 +53,27 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", al
   }
   
   
-  
   #to check if the input is a list
   if(is.list(data)==TRUE){
   
   #If there are subgroups breaks them up into different sections to then compare little by little 
-  if(groups == TRUE){
-    num_groupings <- length(temp_data)
-    group_names <- names(temp_data)
-    #print(length(group_names)) # for debugging
-    table_outputs <- list(length(group_names))
-    for(i in 1:length(group_names)){
-      temporary_data <- temp_data[[i]]
-      #print(temporary_data) # for debugging
-      t <- T_Compare(y=temporary_data, paired=paired, test=test, alpha_value=alpha_value, ...)
-      #print(t) # for debugging
-      table_outputs[[i]] <- t
-    }
-    
-    names(table_outputs) <- group_names
-    
-    return(table_outputs)
+    if(groups == TRUE){
+       num_groupings <- length(temp_data)
+       group_names <- names(temp_data)
+       #print(length(group_names)) # for debugging
+       table_outputs <- list(length(group_names))
+       for(i in 1:length(group_names)){
+          temporary_data <- temp_data[[i]]
+          #print(temporary_data) # for debugging
+          t <- T_Compare(y=temporary_data, paired=paired, test=test, alpha_value=alpha_value, ...)
+          #print(t) # for debugging
+          table_outputs[[i]] <- t
+          }
+       names(table_outputs) <- group_names
+      
+       return(table_outputs)
       }
-  }
+   }
   
   #If groups=FALSE do this
   if(groups == FALSE){
@@ -83,9 +81,5 @@ Mult_T_Tests <- function(data, groups=FALSE, paired=FALSE, test="bonferroni", al
     temporary <- T_Compare(y=temp_data, paired=paired, test=test, alpha_value=alpha_value, ...)
     
     return(temporary)
-    
-  }
-  if(groups != TRUE && groups != FALSE){
-    stop("Data should be a list that was an output from either DataCleaner or SubsetCleaner")
   }
 }

@@ -30,11 +30,6 @@ GraphCompare <- function(data, groups=FALSE, clean_bg=TRUE, x_label,
     #to pull out the subgroup names
     group_names <- names(temp_data)
     
-    #Initialize a dataframe
-    temp_data2 <- data.frame(variable=as.factor(character()),
-                     response=numeric(),
-                     sub_name=as.factor(character()))
-    
     #loop through the subgroups to merge them all together
     #into one dataframe to graph from
     for(i in 1:length(group_names)){
@@ -59,7 +54,7 @@ GraphCompare <- function(data, groups=FALSE, clean_bg=TRUE, x_label,
     a <- ggplot(temp_data2, aes(x=temp_data2$variable, y=temp_data2$response))+geom_boxplot()
     
     if(vert_facet == TRUE){
-    a <- a+ facet_grid(factor(sub_name) ~ .) # facet vertically
+      a <- a+ facet_grid(factor(sub_name) ~ .) # facet vertically
     } else {
       a <- a+ facet_grid(. ~ factor(sub_name)) # facet horizontally
     }
