@@ -14,6 +14,15 @@ SubsetCleaner <- function(x, sub, fact, respo, warn=TRUE){
   #check to make sure that the input is a dataframe and if not make it one
   if(is.data.frame(x)==FALSE) x <- as.data.frame(x)
   
+  #check if column to factor by has factors and if the response column is numeric or an integer value
+  if(any(colnames(x)==fact)==TRUE && any(colnames(x)==respo)==TRUE){
+    factor_col <- which(colnames(x)==fact)
+    respo_col <- which(colnames(x)==respo)
+    if(warn==TRUE){ # stop the code if the following warnings are true
+      if(is.factor(x[,factor_col])==FALSE) stop("Fact column does not have factors")
+      if(is.numeric(x[,respo_col])==FALSE || is.integer(x[,respo_col])==FALSE) stop("Respo column is not numeric or an integer")
+    }
+    
   #to check if the column to subset by is in the dataframe
   if(any(colnames(x)==sub)==TRUE){
     
@@ -24,14 +33,7 @@ SubsetCleaner <- function(x, sub, fact, respo, warn=TRUE){
     numsub <- sub_names
     data_output1 <- list(numsub) #to set up an empty list of length numsub
     data_output2 <- list(numsub) #to set up an empty list of length numsub
-    if(any(colnames(x)==fact)==TRUE && any(colnames(x)==respo)==TRUE){
-      factor_col <- which(colnames(x)==fact)
-      respo_col <- which(colnames(x)==respo)
-    
-      if(warn==TRUE){ # stop the code if the following warnings are true
-        if(is.factor(x[,factor_col])==FALSE) stop("Fact column does not have factors")
-        if(is.numeric(x[,respo_col])==FALSE || is.integer(x[,respo_col])==FALSE) stop("Respo column is not numeric or an integer")
-      }
+
         
     #to cycle through the sub names to make different dataframes that can 
     #then be passed to DataCleaner to pull out the correct information
